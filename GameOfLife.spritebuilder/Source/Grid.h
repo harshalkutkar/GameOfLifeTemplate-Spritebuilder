@@ -14,4 +14,8 @@
 
 @property (nonatomic, assign) int generation;
 
+-(void) countNeighbors;
+-(void) evolveStep;
+-(void) updateCreatures;
+
 @end
