@@ -38,6 +38,7 @@
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		E7CB0D041A7B22E400D3A492 /* Grid.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CB0D031A7B22E400D3A492 /* Grid.m */; };
 		E7CB0D0A1A7B230300D3A492 /* Creature.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CB0D091A7B230300D3A492 /* Creature.m */; };
+		E7CD93E81A7EC34900072225 /* GamePlay.m in Sources */ = {isa = PBXBuildFile; fileRef = E7CD93E71A7EC34900072225 /* GamePlay.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		E7CB0D031A7B22E400D3A492 /* Grid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grid.m; path = Source/Grid.m; sourceTree = "<group>"; };
 		E7CB0D081A7B230300D3A492 /* Creature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Creature.h; path = Source/Creature.h; sourceTree = "<group>"; };
 		E7CB0D091A7B230300D3A492 /* Creature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Creature.m; path = Source/Creature.m; sourceTree = "<group>"; };
+		E7CD93E61A7EC34800072225 /* GamePlay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GamePlay.h; sourceTree = "<group>"; };
+		E7CD93E71A7EC34900072225 /* GamePlay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GamePlay.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +148,8 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E7CD93E61A7EC34800072225 /* GamePlay.h */,
+				E7CD93E71A7EC34900072225 /* GamePlay.m */,
 				B737893D1807617C0076A88C /* AppDelegate.h */,
 				B737893E1807617C0076A88C /* AppDelegate.m */,
 				B7378992180767190076A88C /* MainScene.h */,
@@ -383,6 +388,7 @@
 				B737893F1807617C0076A88C /* AppDelegate.m in Sources */,
 				B7378994180767190076A88C /* MainScene.m in Sources */,
 				B73789871807631A0076A88C /* main.m in Sources */,
+				E7CD93E81A7EC34900072225 /* GamePlay.m in Sources */,
 				E7CB0D041A7B22E400D3A492 /* Grid.m in Sources */,
 				E7CB0D0A1A7B230300D3A492 /* Creature.m in Sources */,
 			);
