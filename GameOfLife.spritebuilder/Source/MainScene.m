@@ -33,6 +33,7 @@
 
 - (void)touchBegan:(CCTouch *)touch withEvent:(UIEvent *)event
 {
+    NSLog(@"Touched");
     [_grid doIfTouched:touch];
     _generationLabel.string = [NSString stringWithFormat:@"%d", _grid.generation];
     _populationLabel.string = [NSString stringWithFormat:@"%d", _grid.totalAlive];
