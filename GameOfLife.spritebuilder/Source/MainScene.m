@@ -7,7 +7,9 @@
     CCTimer *_timer;
     CCLabelTTF *_generationLabel;
     CCLabelTTF *_populationLabel;
+    
 }
+
 
 - (id)init
 {
@@ -19,6 +21,7 @@
     
     return self;
 }
+
 
 - (void)play
 {
@@ -32,6 +35,11 @@
 }
 
 
+-(void) update:(CCTime)delta
+{
+    _generationLabel.string = [NSString stringWithFormat:@"%d", _grid.generation];
+    _populationLabel.string = [NSString stringWithFormat:@"%d", _grid.totalAlive];
+}
 
 
 // this method will get called every half second when you hit the play button and will stop getting called when you hi the pause button

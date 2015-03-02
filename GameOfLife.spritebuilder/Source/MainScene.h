@@ -2,4 +2,6 @@
 
 @interface MainScene : CCNode
 
+- (void) step;
+
 @end
