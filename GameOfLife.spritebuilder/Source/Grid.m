@@ -11,6 +11,8 @@ static const int GRID_COLUMNS = 10;
     float _cellHeight;
 }
 
+#pragma mark - Lifecycle
+
 - (void)onEnter
 {
     [super onEnter];
@@ -20,6 +22,8 @@ static const int GRID_COLUMNS = 10;
     // accept touches on the grid
     self.userInteractionEnabled = YES;
 }
+
+#pragma mark - Setup Grid
 
 - (void)setupGrid
 {
@@ -48,9 +52,6 @@ static const int GRID_COLUMNS = 10;
             // this is shorthand to access an array inside an array
             _gridArray[i][j] = creature;
             
-            // make creatures visible to test this method, remove this once we know we have filled the grid properly
-            //creature.isAlive = YES;
-            
             x+=_cellWidth;
         }
         
@@ -58,7 +59,10 @@ static const int GRID_COLUMNS = 10;
     }
 }
 
-- (void)touchBegan:(CCTouch *)touch withEvent:(CCTouchEvent *)event
+
+#pragma mark - Touch Handling
+
+- (void)touchBegan:(CCTouch *)touch withEvent:(UIEvent *)event
 {
     //get the x,y coordinates of the touch
     CGPoint touchLocation = [touch locationInNode:self];
@@ -73,13 +77,61 @@ static const int GRID_COLUMNS = 10;
 - (Creature *)creatureForTouchPosition:(CGPoint)touchPosition
 {
     //get the row and column that was touched, return the Creature inside the corresponding cell
+    Creature *creature = nil;
+    
+    int column = touchPosition.x / _cellWidth;
     int row = touchPosition.y / _cellHeight;
-    int col = touchPosition.x / _cellWidth;
-    return _gridArray[row][col];
+    creature = _gridArray[row][column];
+    
+    return creature;
 }
 
-- (void) countNeighbors
+#pragma mark - Util function
+
+- (BOOL)isIndexValidForX:(int)x andY:(int)y
 {
+    BOOL isIndexValid = YES;
+    if(x < 0 || y < 0 || x >= GRID_ROWS || y >= GRID_COLUMNS)
+    {
+        isIndexValid = NO;
+    }
+    return isIndexValid;
+}
+
+#pragma mark - Game Logic
+
+- (void)evolveStep {
+    //update each Creature's neighbor count
+    [self countNeighbors];
+    
+    //update each Creature's state
+    [self updateCreatures];
+    
+    //update the generation so the label's text will display the correct generation
+    _generation++;
+}
+
+- (void)updateCreatures {
+    _totalAlive = 0;
+    
+    for (int i = 0; i < [_gridArray count]; i++) {
+        for (int j = 0; j < [_gridArray[i] count]; j++) {
+            Creature *currentCreature = _gridArray[i][j];
+            if (currentCreature.livingNeighbors == 3) {
+                currentCreature.isAlive = YES;
+            } else if ( (currentCreature.livingNeighbors <= 1) || (currentCreature.livingNeighbors >= 4)) {
+                currentCreature.isAlive = NO;
+            }
+            
+            if (currentCreature.isAlive) {
+                _totalAlive++;
+            }
+        }
+    }
+}
+
+
+- (void)countNeighbors {
     // iterate through the rows
     // note that NSArray has a method 'count' that will return the number of elements in the array
     for (int i = 0; i < [_gridArray count]; i++)
@@ -119,64 +171,5 @@ static const int GRID_COLUMNS = 10;
         }
     }
 }
-
-- (BOOL)isIndexValidForX:(int)x andY:(int)y
-{
-    BOOL isIndexValid = YES;
-    if(x < 0 || y < 0 || x >= GRID_ROWS || y >= GRID_COLUMNS)
-    {
-        isIndexValid = NO;
-    }
-    return isIndexValid;
-}
-
-- (void) updateCreatures
-{
-    int numAlive = 0;
-    // iterate through the rows
-    // note that NSArray has a method 'count' that will return the number of elements in the array
-    for (int i = 0; i < [_gridArray count]; i++)
-    {
-        // iterate through all the columns for a given row
-        for (int j = 0; j < [_gridArray[i] count]; j++)
-        {
-            // access the creature in the cell that corresponds to the current row/column
-            Creature *currentCreature = _gridArray[i][j];
-            
-            //check if the creatures property is set to 3
-            if (currentCreature.livingNeighbors==3)
-            {
-                currentCreature.isAlive=TRUE;
-                numAlive++;
-            }
-            else{
-                //In the else if you want to check if the Creature has less than or equal to 1 living neighbors or more than or equal to 4. If either are true, set the Creature's isAlive property to FALSE.
-                if (currentCreature.livingNeighbors<=1 || currentCreature.livingNeighbors>=4)
-                {
-                    currentCreature.isAlive=FALSE;
-                }
-
-            }
-           
-        }
-    }
-    _totalAlive = numAlive;
-}
-
-
--(void) evolveStep
-{
-    NSLog(@"in evolvestep");
-    //update each Creature's neighbor count
-    [self countNeighbors];
-    
-    //update each Creature's state
-    [self updateCreatures];
-    
-    //update the generation so the label's text will display the correct generation
-    _generation++;
-    
-}
-
 
 @end
