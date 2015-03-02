@@ -35,6 +35,7 @@
 }
 
 
+//fixed - was not updating the labels inspite of changing.
 -(void) update:(CCTime)delta
 {
     _generationLabel.string = [NSString stringWithFormat:@"%d", _grid.generation];
