@@ -73,10 +73,6 @@ static const int GRID_COLUMNS = 10;
     //invert it's state - kill it if it's alive, bring it to life if it's dead.
     creature.isAlive = !creature.isAlive;
     
-    [self updateCreatures];
-    
-    
-    
     
     
 }
