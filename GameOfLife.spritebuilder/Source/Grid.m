@@ -62,7 +62,7 @@ static const int GRID_COLUMNS = 10;
 
 #pragma mark - Touch Handling
 
-- (void)touchBegan:(CCTouch *)touch withEvent:(UIEvent *)event
+- (void)doIfTouched:(CCTouch *)touch;
 {
     //get the x,y coordinates of the touch
     CGPoint touchLocation = [touch locationInNode:self];
@@ -72,10 +72,8 @@ static const int GRID_COLUMNS = 10;
     
     //invert it's state - kill it if it's alive, bring it to life if it's dead.
     creature.isAlive = !creature.isAlive;
-    
-    //increment total alive
-     _totalAlive++;
-    
+ 
+    [self updateCreatures];
   
     
     
