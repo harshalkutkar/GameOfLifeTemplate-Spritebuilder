@@ -17,7 +17,7 @@
 -(void) countNeighbors;
 -(void) evolveStep;
 -(void) updateCreatures;
--(void)doIfTouched:(CCTouch *)touch;
+
 
 
 @end

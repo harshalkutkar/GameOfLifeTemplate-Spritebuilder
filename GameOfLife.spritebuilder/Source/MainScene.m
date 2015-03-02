@@ -31,15 +31,7 @@
     [self unschedule:@selector(step)];
 }
 
-- (void)touchBegan:(CCTouch *)touch withEvent:(UIEvent *)event
-{
-    NSLog(@"Touched");
-    [_grid doIfTouched:touch];
-    _generationLabel.string = [NSString stringWithFormat:@"%d", _grid.generation];
-    _populationLabel.string = [NSString stringWithFormat:@"%d", _grid.totalAlive];
 
-    
-}
 
 
 // this method will get called every half second when you hit the play button and will stop getting called when you hi the pause button
