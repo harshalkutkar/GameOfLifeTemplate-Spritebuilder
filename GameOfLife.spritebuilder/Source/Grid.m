@@ -73,10 +73,11 @@ static const int GRID_COLUMNS = 10;
     //invert it's state - kill it if it's alive, bring it to life if it's dead.
     creature.isAlive = !creature.isAlive;
     
-    //update the label
     [self updateCreatures];
     
-   
+    
+    
+    
     
 }
 
@@ -115,6 +116,7 @@ static const int GRID_COLUMNS = 10;
     
     //update the generation so the label's text will display the correct generation
     _generation++;
+    
 }
 
 - (void)updateCreatures {
